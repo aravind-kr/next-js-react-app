@@ -1,1 +1,0 @@
-{"version":3,"file":"static/webpack/static/development/pages/index.js.e0b41746c70a5a120dc7.hot-update.js","sources":["webpack:///./pages/index.js"],"sourcesContent":["const index = () => (\n        <p>Hey Evevryone!!!</p>\n)\n\nexport default index;"],"mappings":";;;;;;;;;;;;;;;;AAAA;AAAA;AACA;AAAA;AAAA;AAAA;AAAA;AAAA;AADA;AACA;AAGA;;;;;;;;;;;;;;;;;;;;;;;A","sourceRoot":""}

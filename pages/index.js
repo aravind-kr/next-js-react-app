@@ -1,10 +1,11 @@
-import Navbar from '../components/Navbar';
+import Layout from '../components/layout';
 
 const index = () => (
-    <section>
-        <Navbar />
-        <p>Hey Evevryone!!!</p>
-    </section>
+    <Layout>
+        <section>
+            <p>Hey Evevryone!!!</p>
+        </section>
+    </Layout>
 );
 
 export default index;
