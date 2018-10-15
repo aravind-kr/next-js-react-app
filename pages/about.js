@@ -1,8 +1,12 @@
 import Layout from '../components/layout';
 
+const sectionStyle = {
+    marginTop: '100px' 
+}
+
 const index = () => (
     <Layout>
-        <section className="container ml-auto">
+        <section className="container ml-auto"  style={sectionStyle}>
             <h1>About Page</h1>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
