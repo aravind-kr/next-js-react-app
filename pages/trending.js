@@ -1,11 +1,12 @@
-import Layout from '../components/layout';
+import Navbar from '../components/Navbar';
 
 const sectionStyle = {
     marginTop: '100px' 
 }
 
 const index = () => (
-    <Layout>
+    <div>
+        <Navbar />
         <section class="container ml-auto" style={sectionStyle}>
             <h1>Trending Page</h1>
             <p>
@@ -15,7 +16,7 @@ const index = () => (
                 cum placeat, perspiciatis nulla.
             </p>
         </section>
-    </Layout>
+    </div>
 );
 
 export default index;
