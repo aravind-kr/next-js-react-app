@@ -12,11 +12,12 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-const 
-
 const styles = theme => ({
     root: {
         width: '100%',
+    },
+    typography: {
+        useNextVariants: true,
     },
     grow: {
         flexGrow: 1,
@@ -77,37 +78,37 @@ const styles = theme => ({
 function SearchAppBar(props) {
     const { classes } = props;
     return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
-            <Typography className={classes.title} color="inherit" noWrap>
-              Material-UI
-            </Typography>
-            <div className={classes.grow} />
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <Input
-                placeholder="Search…"
-                disableUnderline
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
+        <div className={classes.root}>
+            <AppBar position="static" style={{ margin: 0 }}>
+                <Toolbar>
+                    <Typography
+                        color="inherit"
+                        noWrap
+                    >
+                        Material-UI
+                    </Typography>
+                    <div className={classes.grow} />
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon />
+                        </div>
+                        <Input
+                            placeholder="Search…"
+                            disableUnderline
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                        />
+                    </div>
+                </Toolbar>
+            </AppBar>
+        </div>
     );
-  }
-  
-  SearchAppBar.propTypes = {
+}
+
+SearchAppBar.propTypes = {
     classes: PropTypes.object.isRequired,
-  };
-  
-  export default withStyles(styles)(SearchAppBar);
+};
+
+export default withStyles(styles)(SearchAppBar);
