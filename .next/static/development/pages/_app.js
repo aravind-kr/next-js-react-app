@@ -1012,41 +1012,6 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ "./node_modules/@material-ui/core/colors/purple.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/@material-ui/core/colors/purple.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var purple = {
-  50: '#f3e5f5',
-  100: '#e1bee7',
-  200: '#ce93d8',
-  300: '#ba68c8',
-  400: '#ab47bc',
-  500: '#9c27b0',
-  600: '#8e24aa',
-  700: '#7b1fa2',
-  800: '#6a1b9a',
-  900: '#4a148c',
-  A100: '#ea80fc',
-  A200: '#e040fb',
-  A400: '#d500f9',
-  A700: '#aa00ff'
-};
-var _default = purple;
-exports.default = _default;
-
-/***/ }),
-
 /***/ "./node_modules/@material-ui/core/colors/red.js":
 /*!******************************************************!*\
   !*** ./node_modules/@material-ui/core/colors/red.js ***!
@@ -2195,31 +2160,17 @@ function createGenerateClassName() {
   var ruleCounter = 0;
   return function (rule, styleSheet) {
     ruleCounter += 1;
-     true ? (0, _warning.default)(ruleCounter < 1e10, ['Material-UI: you might have a memory leak.', 'The ruleCounter is not supposed to grow that much.'].join('')) : undefined; // Code branch the whole block at the expense of more code.
+     true ? (0, _warning.default)(ruleCounter < 1e10, ['Material-UI: you might have a memory leak.', 'The ruleCounter is not supposed to grow that much.'].join('')) : undefined;
 
-    if (dangerouslyUseGlobalCSS) {
-      if (styleSheet) {
-        if (styleSheet.options.name) {
-          return "".concat(styleSheet.options.name, "-").concat(rule.key);
-        }
-
-        if (styleSheet.options.classNamePrefix && "development" !== 'production') {
-          var prefix = safePrefix(styleSheet.options.classNamePrefix);
-          return "".concat(prefix, "-").concat(rule.key, "-").concat(seed).concat(ruleCounter);
-        }
-      }
-
-      if (false) {}
-
-      return "".concat(rule.key, "-").concat(seed).concat(ruleCounter);
+    if (dangerouslyUseGlobalCSS && styleSheet && styleSheet.options.name) {
+      return "".concat(safePrefix(styleSheet.options.name), "-").concat(rule.key);
     }
 
     if (false) {}
 
     if (styleSheet && styleSheet.options.classNamePrefix) {
-      var _prefix = safePrefix(styleSheet.options.classNamePrefix);
-
-      return "".concat(_prefix, "-").concat(rule.key, "-").concat(seed).concat(ruleCounter);
+      var prefix = safePrefix(styleSheet.options.classNamePrefix);
+      return "".concat(prefix, "-").concat(rule.key, "-").concat(seed).concat(ruleCounter);
     }
 
     return "".concat(rule.key, "-").concat(seed).concat(ruleCounter);
@@ -2534,6 +2485,8 @@ function createPalette(palette) {
     if (!color.contrastText) {
       color.contrastText = getContrastText(color.main);
     }
+
+    return color;
   }
 
   augmentColor(primary);
@@ -2631,7 +2584,7 @@ function round(value) {
 var caseAllCaps = {
   textTransform: 'uppercase'
 };
-var defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
+var defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
 /**
  * @see @link{https://material.io/design/typography/the-type-system.html}
  * @see @link{https://material.io/design/typography/understanding-typography.html}
@@ -2640,7 +2593,7 @@ var defaultFontFamiliy = '"Roboto", "Helvetica", "Arial", sans-serif';
 function createTypography(palette, typography) {
   var _ref = typeof typography === 'function' ? typography(palette) : typography,
       _ref$fontFamily = _ref.fontFamily,
-      fontFamily = _ref$fontFamily === void 0 ? defaultFontFamiliy : _ref$fontFamily,
+      fontFamily = _ref$fontFamily === void 0 ? defaultFontFamily : _ref$fontFamily,
       _ref$fontSize = _ref.fontSize,
       fontSize = _ref$fontSize === void 0 ? 14 : _ref$fontSize,
       _ref$fontWeightLight = _ref.fontWeightLight,
@@ -2653,10 +2606,12 @@ function createTypography(palette, typography) {
       htmlFontSize = _ref$htmlFontSize === void 0 ? 16 : _ref$htmlFontSize,
       _ref$useNextVariants = _ref.useNextVariants,
       useNextVariants = _ref$useNextVariants === void 0 ? Boolean(global.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__) : _ref$useNextVariants,
+      _ref$suppressWarning = _ref.suppressWarning,
+      suppressWarning = _ref$suppressWarning === void 0 ? false : _ref$suppressWarning,
       allVariants = _ref.allVariants,
-      other = (0, _objectWithoutProperties2.default)(_ref, ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "htmlFontSize", "useNextVariants", "allVariants"]);
+      other = (0, _objectWithoutProperties2.default)(_ref, ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "htmlFontSize", "useNextVariants", "suppressWarning", "allVariants"]);
 
-   true ? (0, _warning.default)(useNextVariants, 'Material-UI: you are using the deprecated typography variants ' + 'that will be removed in the next major release.' + '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2') : undefined;
+   true ? (0, _warning.default)(useNextVariants || suppressWarning, 'Material-UI: you are using the deprecated typography variants ' + 'that will be removed in the next major release.' + '\nPlease read the migration guide under https://material-ui.com/style/typography#migration-to-typography-v2') : undefined;
   var coef = fontSize / 14;
 
   var pxToRem = function pxToRem(size) {
@@ -2671,7 +2626,7 @@ function createTypography(palette, typography) {
       fontSize: pxToRem(size),
       // Unitless following http://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
       lineHeight: lineHeight
-    }, fontFamily === defaultFontFamiliy ? {
+    }, fontFamily === defaultFontFamily ? {
       letterSpacing: "".concat(round(letterSpacing / size), "em")
     } : {}, casing, allVariants);
   };
@@ -3012,11 +2967,13 @@ var _jssVendorPrefixer = _interopRequireDefault(__webpack_require__(/*! jss-vend
 
 var _jssPropsSort = _interopRequireDefault(__webpack_require__(/*! jss-props-sort */ "./node_modules/jss-props-sort/lib/index.js"));
 
-// Subset of jss-preset-default with only the plugins the Material-UI
-// components are using.
+// Subset of jss-preset-default with only the plugins the Material-UI components are using.
 function jssPreset() {
   return {
-    plugins: [(0, _jssGlobal.default)(), (0, _jssNested.default)(), (0, _jssCamelCase.default)(), (0, _jssDefaultUnit.default)(), (0, _jssVendorPrefixer.default)(), (0, _jssPropsSort.default)()]
+    plugins: [(0, _jssGlobal.default)(), (0, _jssNested.default)(), (0, _jssCamelCase.default)(), (0, _jssDefaultUnit.default)(), // Disable the vendor prefixer server-side, it does nothing.
+    // This way, we can get a performance boost.
+    // In the documentation, we are using `autoprefixer` to solve this problem.
+    typeof window === 'undefined' ? null : (0, _jssVendorPrefixer.default)(), (0, _jssPropsSort.default)()]
   };
 }
 
@@ -3058,16 +3015,16 @@ function mergeClasses() {
     return baseClasses;
   }
 
-  return (0, _extends2.default)({}, baseClasses, Object.keys(newClasses).reduce(function (accumulator, key) {
-     true ? (0, _warning.default)(baseClasses[key] || !newClasses[key], ["Material-UI: the key `".concat(key, "` ") + "provided to the classes property is not implemented in ".concat((0, _getDisplayName.default)(Component), "."), "You can only override one of the following: ".concat(Object.keys(baseClasses).join(','))].join('\n')) : undefined;
+  var nextClasses = (0, _extends2.default)({}, baseClasses);
+  Object.keys(newClasses).forEach(function (key) {
+     true ? (0, _warning.default)(baseClasses[key] || !newClasses[key], ["Material-UI: the key `".concat(key, "` ") + "provided to the classes property is not implemented in ".concat((0, _getDisplayName.default)(Component), "."), "You can only override one of the following: ".concat(Object.keys(baseClasses).join(','), ".")].join('\n')) : undefined;
      true ? (0, _warning.default)(!newClasses[key] || typeof newClasses[key] === 'string', ["Material-UI: the key `".concat(key, "` ") + "provided to the classes property is not valid for ".concat((0, _getDisplayName.default)(Component), "."), "You need to provide a non empty string instead of: ".concat(newClasses[key], ".")].join('\n')) : undefined;
 
     if (newClasses[key]) {
-      accumulator[key] = "".concat(baseClasses[key], " ").concat(newClasses[key]);
+      nextClasses[key] = "".concat(baseClasses[key], " ").concat(newClasses[key]);
     }
-
-    return accumulator;
-  }, {}));
+  });
+  return nextClasses;
 }
 
 var _default = mergeClasses;
@@ -3475,7 +3432,11 @@ function getDefaultTheme() {
     return defaultTheme;
   }
 
-  defaultTheme = (0, _createMuiTheme.default)();
+  defaultTheme = (0, _createMuiTheme.default)({
+    typography: {
+      suppressWarning: true
+    }
+  });
   return defaultTheme;
 } // Link a style sheet with a component.
 // It does not modify the component passed to it;
@@ -3676,6 +3637,7 @@ var withStyles = function withStyles(stylesOrCreator) {
           var meta = name;
 
           if ("development" !== 'production' && !meta) {
+            // Provide a better DX outside production.
             meta = (0, _getDisplayName.default)(Component);
              true ? (0, _warning.default)(typeof meta === 'string', ['Material-UI: the component displayName is invalid. It needs to be a string.', "Please fix the following component: ".concat(Component, ".")].join('\n')) : undefined;
           }
@@ -3686,7 +3648,7 @@ var withStyles = function withStyles(stylesOrCreator) {
             flip: typeof flip === 'boolean' ? flip : theme.direction === 'rtl',
             link: false
           }, this.sheetOptions, this.stylesCreatorSaved.options, {
-            name: name
+            name: name || Component.displayName
           }, styleSheetOptions));
           return sheet;
         }
@@ -4006,8 +3968,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getFunctionName = getFunctionName;
 exports.default = void 0;
-// Fork of recompose/getDisplayName with added IE11 support
-// Simplified polyfill for IE11 support
+// Fork of recompose/getDisplayName with added IE 11 support
+// Simplified polyfill for IE 11 support
 // https://github.com/JamesMGreene/Function.name/blob/58b314d4a983110c3682f1228f845d39ccca1817/Function.name.js#L3
 var fnNameMatchRegex = /^\s*function(?:\s|\s*\/\*.*\*\/\s*)+([^(\s/]*)\s*/;
 
@@ -18189,8 +18151,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jss__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/styles/index.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core_colors_purple__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/colors/purple */ "./node_modules/@material-ui/core/colors/purple.js");
-/* harmony import */ var _material_ui_core_colors_purple__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_colors_purple__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/colors/grey */ "./node_modules/@material-ui/core/colors/grey.js");
+/* harmony import */ var _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/colors/green */ "./node_modules/@material-ui/core/colors/green.js");
 /* harmony import */ var _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3__);
 /* eslint-disable no-underscore-dangle */
@@ -18203,9 +18165,9 @@ __webpack_require__.r(__webpack_exports__);
 var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["createMuiTheme"])({
   palette: {
     primary: {
-      light: _material_ui_core_colors_purple__WEBPACK_IMPORTED_MODULE_2___default.a[300],
-      main: _material_ui_core_colors_purple__WEBPACK_IMPORTED_MODULE_2___default.a[500],
-      dark: _material_ui_core_colors_purple__WEBPACK_IMPORTED_MODULE_2___default.a[700]
+      light: _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default.a[500],
+      main: _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default.a[900],
+      dark: _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default.a[900]
     },
     secondary: {
       light: _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3___default.a[300],
