@@ -236,8 +236,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/colors/grey */ "@material-ui/core/colors/grey");
 /* harmony import */ var _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/colors/green */ "@material-ui/core/colors/green");
-/* harmony import */ var _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _material_ui_core_colors_red__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/colors/red */ "@material-ui/core/colors/red");
+/* harmony import */ var _material_ui_core_colors_red__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_colors_red__WEBPACK_IMPORTED_MODULE_3__);
 /* eslint-disable no-underscore-dangle */
 
 
@@ -249,13 +249,16 @@ var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_1__["create
   palette: {
     primary: {
       light: _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default.a[500],
-      main: _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default.a[900],
-      dark: _material_ui_core_colors_grey__WEBPACK_IMPORTED_MODULE_2___default.a[900]
+      main: '#333333',
+      dark: '#333333'
     },
     secondary: {
-      light: _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3___default.a[300],
-      main: _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3___default.a[500],
-      dark: _material_ui_core_colors_green__WEBPACK_IMPORTED_MODULE_3___default.a[700]
+      light: _material_ui_core_colors_red__WEBPACK_IMPORTED_MODULE_3___default.a[50],
+      main: _material_ui_core_colors_red__WEBPACK_IMPORTED_MODULE_3___default.a[500],
+      dark: _material_ui_core_colors_red__WEBPACK_IMPORTED_MODULE_3___default.a[800]
+    },
+    logo: {
+      main: '#ff5041'
     }
   },
   typography: {
@@ -315,17 +318,6 @@ module.exports = require("@material-ui/core/CssBaseline");
 
 /***/ }),
 
-/***/ "@material-ui/core/colors/green":
-/*!*************************************************!*\
-  !*** external "@material-ui/core/colors/green" ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/core/colors/green");
-
-/***/ }),
-
 /***/ "@material-ui/core/colors/grey":
 /*!************************************************!*\
   !*** external "@material-ui/core/colors/grey" ***!
@@ -334,6 +326,17 @@ module.exports = require("@material-ui/core/colors/green");
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/colors/grey");
+
+/***/ }),
+
+/***/ "@material-ui/core/colors/red":
+/*!***********************************************!*\
+  !*** external "@material-ui/core/colors/red" ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/colors/red");
 
 /***/ }),
 
